@@ -8,10 +8,10 @@ namespace IdentityTest.Models
 {
     public class AppUser : IdentityUser
     {
-        public AppUser(string userName) :base(userName)
-        {
+        //public AppUser(string userName) :base(userName)
+        //{
 
-        }
+        //}
         public DateTime DateOfBirth { get; set; }
     }
 
