@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using IdentityTest.Validation;
 
 namespace IdentityTest.App_Start
 {
@@ -17,6 +18,14 @@ namespace IdentityTest.App_Start
         {
             AppIdentityDbContext db = context.Get<AppIdentityDbContext>();
             AppUserManager manager = new AppUserManager(new UserStore<AppUser>(db));
+            manager.PasswordValidator = new CustomPasswordValidator
+            {
+                RequiredLength = 8,
+                RequireNonLetterOrDigit = true,
+                RequireDigit = false,
+                RequireLowercase = true,
+                RequireUppercase = true,
+            };
             return manager;
         }
 
