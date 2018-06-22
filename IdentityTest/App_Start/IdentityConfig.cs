@@ -26,6 +26,11 @@ namespace IdentityTest.App_Start
                 RequireLowercase = true,
                 RequireUppercase = true,
             };
+            manager.UserValidator = new CustomUserValidator(manager)
+            {
+                AllowOnlyAlphanumericUserNames = true,
+                RequireUniqueEmail = true
+            };
             return manager;
         }
 
