@@ -44,7 +44,7 @@ namespace IdentityTest.Controllers
         {
             if(ModelState.IsValid)
             {
-                var user = new AppUser { UserName = model.Email, DateOfBirth = model.DateOfBirth };
+                var user = new AppUser { UserName = model.Email};
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
