@@ -58,10 +58,10 @@ namespace IdentityTest.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            if (HttpContext.User.Identity.IsAuthenticated)
-            {
-                return View("Error", new string[] { "您已经登录！" });
-            }
+            //if (HttpContext.User.Identity.IsAuthenticated)
+            //{
+            //    return View("Error", new string[] { "您已经登录！" });
+            //}
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
