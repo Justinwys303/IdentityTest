@@ -35,6 +35,19 @@ namespace IdentityTest.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            List<SelectListItem> cityItems = new List<SelectListItem>();
+            cityItems.Add(new SelectListItem { Text = "shanghai", Value = "0", Selected=true });
+            cityItems.Add(new SelectListItem { Text = "Hangzhou", Value = "1", Selected = true });
+            cityItems.Add(new SelectListItem { Text = "NewYork", Value = "2", Selected = true });
+            cityItems.Add(new SelectListItem { Text = "Tokyo", Value = "3", Selected = true });
+            ViewBag.Cities = new SelectList(cityItems);
+
+            List<SelectListItem> countryItems = new List<SelectListItem>();
+            countryItems.Add(new SelectListItem { Text = "China", Value = "0", Selected = true });
+            countryItems.Add(new SelectListItem { Text = "USA", Value = "1", Selected = true });
+            countryItems.Add(new SelectListItem { Text = "Japan", Value = "2", Selected = true });
+            countryItems.Add(new SelectListItem { Text = "None", Value = "3", Selected = true });
+            ViewBag.Countries = new SelectList(countryItems);
             return View();
         }
 
