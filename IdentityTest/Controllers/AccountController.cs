@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using IdentityTest.Models;
 using Microsoft.AspNet.Identity;
 using System.Threading.Tasks;
+using Microsoft.Owin.Security;
 
 namespace IdentityTest.Controllers
 {
@@ -81,8 +82,10 @@ namespace IdentityTest.Controllers
                 else
                 {
                     var claimsIdentity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-                    //AuthManager.SignOut();
-                    //AuthManager.SignIn(new AuthenticationProperties { IsPersistent = false }, claimsIdentity);
+                    //claimsIdentity.AddClaims(LocationClaimsProvider.GetClaims(claimsIdentity));
+                    //claimsIdentity.AddClaims(ClaimsRoles.CreateRolesFromClaims(claimsIdentity));
+                    AuthManager.SignOut();
+                    AuthManager.SignIn(new AuthenticationProperties { IsPersistent = false }, claimsIdentity);
                     return Redirect(returnUrl);
                 }
             }
@@ -96,6 +99,11 @@ namespace IdentityTest.Controllers
             {
                 ModelState.AddModelError("", error);
             }
+        }
+
+        private IAuthenticationManager AuthManager
+        {
+            get { return HttpContext.GetOwinContext().Authentication; }
         }
 
     }

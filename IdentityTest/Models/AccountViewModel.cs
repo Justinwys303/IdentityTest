@@ -41,8 +41,10 @@ namespace IdentityTest.Models
         public string ConfirmPassword { get; set; }
 
         [Required]
-        [DataType(DataType.DateTime)]
-        [Display(Name = "DateOfBirth")]
-        public DateTime DateOfBirth { get; set; }
+        [Display(Name = "City")]
+        public Cities City { get; set; }
+
+        [Display(Name = "Country")]
+        public Countries Country { get; set; }
     }
 }
