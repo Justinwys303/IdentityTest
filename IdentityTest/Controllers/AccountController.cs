@@ -36,18 +36,20 @@ namespace IdentityTest.Controllers
         public ActionResult Register()
         {
             List<SelectListItem> cityItems = new List<SelectListItem>();
-            cityItems.Add(new SelectListItem { Text = "shanghai", Value = "0", Selected=true });
-            cityItems.Add(new SelectListItem { Text = "Hangzhou", Value = "1", Selected = true });
-            cityItems.Add(new SelectListItem { Text = "NewYork", Value = "2", Selected = true });
-            cityItems.Add(new SelectListItem { Text = "Tokyo", Value = "3", Selected = true });
-            ViewBag.Cities = new SelectList(cityItems);
+            cityItems.Add(new SelectListItem { Text = "shanghai", Value = "0"});
+            cityItems.Add(new SelectListItem { Text = "Hangzhou", Value = "1"});
+            cityItems.Add(new SelectListItem { Text = "NewYork", Value = "2"});
+            cityItems.Add(new SelectListItem { Text = "Tokyo", Value = "3"});
+            //ViewBag.Cities = new SelectList(cityItems);
+            ViewData["Cities"] = cityItems;
 
             List<SelectListItem> countryItems = new List<SelectListItem>();
-            countryItems.Add(new SelectListItem { Text = "China", Value = "0", Selected = true });
-            countryItems.Add(new SelectListItem { Text = "USA", Value = "1", Selected = true });
-            countryItems.Add(new SelectListItem { Text = "Japan", Value = "2", Selected = true });
-            countryItems.Add(new SelectListItem { Text = "None", Value = "3", Selected = true });
-            ViewBag.Countries = new SelectList(countryItems);
+            countryItems.Add(new SelectListItem { Text = "China", Value = "0" });
+            countryItems.Add(new SelectListItem { Text = "USA", Value = "1" });
+            countryItems.Add(new SelectListItem { Text = "Japan", Value = "2" });
+            countryItems.Add(new SelectListItem { Text = "None", Value = "3", Selected = true  });
+            //ViewBag.Countries = new SelectList(countryItems);
+            ViewData["Countries"] = countryItems;
             return View();
         }
 
@@ -58,7 +60,8 @@ namespace IdentityTest.Controllers
         {
             if(ModelState.IsValid)
             {
-                var user = new AppUser { UserName = model.Email};
+                var user = new AppUser { UserName = model.Email, City = model.City};
+                user.SetCountryFromCity(user.City);
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

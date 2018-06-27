@@ -44,7 +44,7 @@ namespace IdentityTest.Models
         [Display(Name = "City")]
         public Cities City { get; set; }
 
-        [Display(Name = "Country")]
-        public Countries Country { get; set; }
+        //[Display(Name = "Country")]
+        //public Countries Country { get; set; }
     }
 }
