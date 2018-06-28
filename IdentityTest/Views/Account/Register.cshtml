@@ -36,7 +36,7 @@
         <div class="form-group">
             @Html.LabelFor(m => m.City, new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
-                @Html.DropDownListFor(m => m.City, ViewData["Cities"] as List<SelectListItem>, new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.City, RegisterViewModel.GetCitiesItems(),"--select city--", new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
             </div>
         </div>

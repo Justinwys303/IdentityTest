@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace IdentityTest.Models
 {
@@ -37,12 +38,22 @@ namespace IdentityTest.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         [Required]
         [Display(Name = "City")]
         public Cities City { get; set; }
+
+        public static List<SelectListItem> GetCitiesItems()
+        {
+            List<SelectListItem> cityItems = new List<SelectListItem>();
+            cityItems.Add(new SelectListItem { Text = "shanghai", Value = "0" });
+            cityItems.Add(new SelectListItem { Text = "Hangzhou", Value = "1" });
+            cityItems.Add(new SelectListItem { Text = "NewYork", Value = "2" });
+            cityItems.Add(new SelectListItem { Text = "Tokyo", Value = "3" });
+            return cityItems;
+        }
 
         //[Display(Name = "Country")]
         //public Countries Country { get; set; }
