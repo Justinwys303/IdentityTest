@@ -35,4 +35,13 @@ namespace IdentityTest.App_Start
         }
 
     }
+
+    public class AppRoleManager:RoleManager<AppRole>
+    {
+        public AppRoleManager(RoleStore<AppRole> store) : base(store) { }
+        public static AppRoleManager Create(IdentityFactoryOptions<AppRoleManager> options, IOwinContext context)
+        {
+            return new AppRoleManager(new RoleStore<AppRole>(context.Get<AppIdentityDbContext>()));
+        }
+    }
 }
